@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake",      "~> 10.0"
   spec.add_development_dependency "yard",      "~> 0.8"
   spec.add_development_dependency "redcarpet", "~> 2.2"
+  spec.add_development_dependency "pry"
   spec.add_dependency "activerecord", "~>3.2.0"
   spec.add_dependency "sqlite3",      "~>1.3.0"
 end

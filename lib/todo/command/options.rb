@@ -7,14 +7,13 @@ module Todo
       #サブコマンドなどのOptionParserを定義
       def self.parse!(argv)
         options = {}
-        sub_command_parsers = create_sub_command_parsers
+        sub_command_parsers = create_sub_command_parsers(options)
         command_parser = create_command_parser
         # 引数の解析を行う
         begin 
           command_parser.order!(argv)
 
           options[:command] = argv.shift
-
           sub_command_parsers[options[:command]].parse!(argv)
 
           #updateとdeleteの場合はidを取得する
@@ -30,7 +29,7 @@ module Todo
       end
 
       # サブコマンドで処理をする際に、未定義のkeyを指定されたら例外を発生させる
-      def self.create_sub_command_parsers
+      def self.create_sub_command_parsers(options)
         sub_command_parsers = Hash.new do |k,v|
           raise ArgumentError, "'#{v}' is not todo sub command."
         end
